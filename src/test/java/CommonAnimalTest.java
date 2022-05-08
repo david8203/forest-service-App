@@ -29,5 +29,20 @@ class CommonAnimalTest {
         setupObject().saveCommonAnimal();
         assertTrue(CommonAnimal.all().get(0).equals(setupObject()));
     }
-
+    @Test
+    public void all_returnsAllInstancesOfCommonAnimal_true() {
+        CommonAnimal firstCommonAnimal = new CommonAnimal("Lion");
+        firstCommonAnimal.saveCommonAnimal();
+        CommonAnimal secondCommonAnimal = new CommonAnimal("Lion");
+        secondCommonAnimal.saveCommonAnimal();
+        assertEquals(true, CommonAnimal.all().get(0).equals(firstCommonAnimal));
+        assertEquals(true, CommonAnimal.all().get(1).equals(secondCommonAnimal));
+    }
+    @Test
+    public void save_assignsIdToObject() {
+        CommonAnimal testCommonAnimal = new CommonAnimal("Lion");
+        testCommonAnimal.saveCommonAnimal();
+        CommonAnimal savedCommonAnimal = CommonAnimal.all().get(0);
+        assertEquals(testCommonAnimal.getId(), savedCommonAnimal.getId());
+    }
 }
