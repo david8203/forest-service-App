@@ -31,4 +31,14 @@ public class CommonAnimal extends Animal{
                     .executeAndFetch(CommonAnimal.class);
         }
     }
+    public static CommonAnimal find(int id) {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "SELECT * FROM animals where id = :id";
+            CommonAnimal commonAnimal = con.createQuery(sql)
+                    .addParameter("id", id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetchFirst(CommonAnimal.class);
+            return commonAnimal;
+        }
+    }
 }

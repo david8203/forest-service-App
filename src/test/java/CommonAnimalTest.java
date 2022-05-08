@@ -45,4 +45,18 @@ class CommonAnimalTest {
         CommonAnimal savedCommonAnimal = CommonAnimal.all().get(0);
         assertEquals(testCommonAnimal.getId(), savedCommonAnimal.getId());
     }
+    @Test
+    public void find_returnsCommonWithSameId_secondCommonAnimal() {
+        CommonAnimal firstCommonAnimal = new CommonAnimal("Elephant");
+        firstCommonAnimal.saveCommonAnimal();
+        CommonAnimal secondCommonAnimal = new CommonAnimal("Elephant");
+        secondCommonAnimal.saveCommonAnimal();
+        assertEquals(CommonAnimal.find(secondCommonAnimal.getId()), secondCommonAnimal);
+    }
+
+    @Test
+    public void commonAnimal_instantiatesWithEndangeredFalse_false() {
+        CommonAnimal testCommonAnimal = setupObject();
+        assertEquals(testCommonAnimal.isEndangered(), false);
+    }
 }
