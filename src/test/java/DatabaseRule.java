@@ -1,5 +1,7 @@
 import org.sql2o.*;
-public class DatabaseRule {
+import spark.resource.ExternalResource;
+
+public class DatabaseRule extends ExternalResource {
     @Override
     protected void before() {
         //development database
