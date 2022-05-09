@@ -12,7 +12,7 @@ public class DB {
     public static Sql2o sql2o;
 
     static {
-        Logger logger = LoggerFactory.getLogger(DB.class);
+        Logger logger = (Logger) LoggerFactory.getLogger(DB.class);
 
         try {
             if (System.getenv("DATABASE_URL") == null) {
@@ -27,7 +27,7 @@ public class DB {
             String password = (dbUri.getUserInfo() == null) ? DatabaseProps.password : dbUri.getUserInfo().split(":")[1];
             sql2o = new Sql2o("jdbc:postgresql://" + host + ":" + port + path, username, password);
         } catch (URISyntaxException e ) {
-            logger.error("Unable to connect to database.");
+            ((org.slf4j.Logger) logger).error("Unable to connect to database.");
         }
     }
 

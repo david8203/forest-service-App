@@ -49,6 +49,34 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "sighting-form.hbs");
         }, new HandlebarsTemplateEngine());
+        post("/sightings/common/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            String name = request.queryParams("name");
+            String location = request.queryParams("location");
+            String rangerName = request.queryParams("rangerName");
+            CommonAnimal newCommonAnimal = new CommonAnimal(name);
+            newCommonAnimal.saveCommonAnimal();
+            int animalId = newCommonAnimal.getId();
+            Sighting newSighting = new Sighting(animalId, location, rangerName);
+            newSighting.save();
+            response.redirect("/sightings");
+            return null;
+        }, new HandlebarsTemplateEngine());
+        post("/sightings/endangered/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            String name = request.queryParams("name");
+            String health = request.queryParams("health");
+            String age = request.queryParams("age");
+            String location = request.queryParams("location");
+            String rangerName = request.queryParams("rangerName");
+            EndangeredAnimal newEndangeredAnimal = new EndangeredAnimal(name, health, age);
+            newEndangeredAnimal.saveEndangeredAnimal();
+            int animalId  = newEndangeredAnimal.getId();
+            Sighting newSighting = new Sighting(animalId, location, rangerName);
+            newSighting.save();
+            response.redirect("/sightings");
+            return null;
+        }, new HandlebarsTemplateEngine());
     }
 
 }
