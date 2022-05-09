@@ -68,4 +68,8 @@ public class Sighting {
         Sighting sighting = (Sighting) o;
         return Objects.equals(ranger_name, sighting.ranger_name);
     }
+    @Override
+    public int hashCode() {
+        return Objects.hash(ranger_name);
+    }
 }
