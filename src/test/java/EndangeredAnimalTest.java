@@ -53,4 +53,18 @@ class EndangeredAnimalTest {
         EndangeredAnimal savedEndangeredAnimal = EndangeredAnimal.all().get(0);
         assertEquals(testEndangeredAnimal.getId(), savedEndangeredAnimal.getId());
     }
+    @Test
+    public void find_returnsEndangeredAnimalWithSameId_secondEndangeredAnimal() {
+        EndangeredAnimal firstEndangeredAnimal = new EndangeredAnimal("Elephant", "okay", "newborn");
+        firstEndangeredAnimal.saveEndangeredAnimal();
+        EndangeredAnimal secondEndangeredAnimal = new EndangeredAnimal("Elephant", "okay", "newborn");
+        secondEndangeredAnimal.saveEndangeredAnimal();
+        assertEquals(EndangeredAnimal.find(secondEndangeredAnimal.getId()), secondEndangeredAnimal);
+    }
+
+    @Test
+    public void endangeredAnimal_instantiatesWithEndangeredTrue_true() {
+        EndangeredAnimal testEndangeredAnimal = setupObject();
+        assertEquals(testEndangeredAnimal.isEndangered(), true);
+    }
 }
