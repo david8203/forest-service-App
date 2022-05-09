@@ -1,9 +1,11 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'org.example'
 version '1.0-SNAPSHOT'
+mainClassName = 'App'
 
 repositories {
     mavenCentral()
@@ -23,7 +25,5 @@ dependencies {
     implementation group: 'com.h2database', name: 'h2', version: '1.4.191'
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
 }
-
-test {
-    useJUnitPlatform()
-}
+applicationName = "forest--services"
+task stage(dependsOn: ['clean', 'installDist'])

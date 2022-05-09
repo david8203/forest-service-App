@@ -1,4 +1,7 @@
-import org.slf4j.LoggerFactory;
+
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -12,7 +15,7 @@ public class DB {
     public static Sql2o sql2o;
 
     static {
-        Logger logger = (Logger) LoggerFactory.getLogger(DB.class);
+        Logger logger = Logger.getLogger(String.valueOf(DB.class));
 
         try {
             if (System.getenv("DATABASE_URL") == null) {
@@ -27,14 +30,13 @@ public class DB {
             String password = (dbUri.getUserInfo() == null) ? DatabaseProps.password : dbUri.getUserInfo().split(":")[1];
             sql2o = new Sql2o("jdbc:postgresql://" + host + ":" + port + path, username, password);
         } catch (URISyntaxException e ) {
-            ((org.slf4j.Logger) logger).error("Unable to connect to database.");
+            logger.log(Level.WARNING,"not connected to a database");
         }
     }
 
-
-    //development database
+}
+//development database
 //    public static Sql2o sql2o = new Sql2o(
 //            "jdbc:postgresql://localhost:5432/wildlife_tracker",
 //            "dice",
 //            "8203");
-}
