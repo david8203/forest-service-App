@@ -8,7 +8,7 @@ public class DatabaseRule extends ExternalResource{
 //        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", "kingdice", "8203");  //Those with linux or windows use two strings for username and password
 //    }
 
-    DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", "owfozlaliwbcvu", "7e516450d6db0f4ccf2c198a7319b25984c49315e8ea6e7b063bcd80b26c665a");  //Those with linux or windows use two strings for username and password
+    DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", "kingdice", "8203");  //Those with linux or windows use two strings for username and password
 }
 
     @Override
